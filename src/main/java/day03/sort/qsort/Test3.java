@@ -1,10 +1,22 @@
 package day03.sort.qsort;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Test3 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        String[] strArray;
+        int[] array = new int[10000];
+        BufferedReader br = new BufferedReader(new FileReader("src/main/java/day03/sort/datafile.txt"));
+        String line;
+        while ((line=br.readLine())!=null){
+            strArray = line.split(",");
+            for (int i = 0; i < strArray.length; i++) {
+                array[i] = Integer.parseInt(strArray[i]);
+            }
+        }
         long start = System.currentTimeMillis();
-        int[] array;
-        array = new int[]{};
         //用自写快排
         quickSort(array,0,array.length-1);
         long end = System.currentTimeMillis();
