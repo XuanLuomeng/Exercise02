@@ -2,10 +2,10 @@ package day03.sort.dollarsAndChickens;
 
 public class TenThousand2 {
     public static void main(String[] args) {
-        long start = System.currentTimeMillis();
         int cock = 0;
         int hen = 0;
         int chick = 0;
+        long start = System.nanoTime();
         for (cock = 0; cock <= 10000; cock++) {
             for (hen = 0; hen <= 10000 - cock; hen++) {
                 chick = 10000 - cock - hen;
@@ -20,6 +20,6 @@ public class TenThousand2 {
                 }
             }
         }
-        System.out.println("用时：" + (System.currentTimeMillis() - start) + "ms");
+        System.out.println("用时：" + (System.nanoTime() - start) + "ns");
     }
 }

@@ -4,15 +4,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Test1 {
+public class Test2 {
     public static void main(String[] args) throws IOException {
         String[] strArray;
-        int[] array = new int[10000];
+        int[] array = new int[1000];
         BufferedReader br = new BufferedReader(new FileReader("src/main/java/day03/sort/datafile.txt"));
         String line;
         while ((line = br.readLine()) != null) {
             strArray = line.split(",");
-            for (int i = 0; i < strArray.length; i++) {
+            for (int i = 0; i < 1000; i++) {
                 array[i] = Integer.parseInt(strArray[i]);
             }
         }

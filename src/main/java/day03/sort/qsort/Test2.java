@@ -16,11 +16,11 @@ public class Test2 {
                 array[i] = Integer.parseInt(strArray[i]);
             }
         }
-        long start = System.currentTimeMillis();
+        long start = System.nanoTime();
         //用自写快排
         quickSort(array,0,array.length-1);
-        long end = System.currentTimeMillis();
-        System.out.println("用时:"+(end-start)+"ms");
+        long end = System.nanoTime();
+        System.out.println("用时:"+(end-start)+"ns");
         for (int i = 0; i < array.length; i++) {
             System.out.println(array[i]);
         }
