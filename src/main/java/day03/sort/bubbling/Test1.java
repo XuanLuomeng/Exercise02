@@ -1,21 +1,15 @@
 package day03.sort.bubbling;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import day03.util.ReadFile;
+
 import java.io.IOException;
 
 public class Test1 {
     public static void main(String[] args) throws IOException {
-        String[] strArray;
-        int[] array = new int[10000];
-        BufferedReader br = new BufferedReader(new FileReader("src/main/java/day03/sort/datafile.txt"));
-        String line;
-        while ((line = br.readLine()) != null) {
-            strArray = line.split(",");
-            for (int i = 0; i < strArray.length; i++) {
-                array[i] = Integer.parseInt(strArray[i]);
-            }
-        }
+        String file = "src/main/java/day03/sort/datafile.txt";
+        int[] array;
+        ReadFile rf = new ReadFile();
+        array = rf.read(file, 100);
         long start = System.nanoTime();
         //用冒泡排序
         bubbling(array);
