@@ -2,8 +2,6 @@ package day03.sort.bubbling;
 
 import day03.util.ReadFile;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class Test2 {
