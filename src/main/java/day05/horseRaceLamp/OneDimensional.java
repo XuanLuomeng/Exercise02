@@ -3,14 +3,17 @@ package day05.horseRaceLamp;
 public class OneDimensional {
     public static void main(String[] args) {
         String[] str = {"H", "e", "l", "l", "o", ",", " ", "J", "a", "v", "a", "!"};
-        for (int j = 0; j < str.length; j++) {
-            System.out.print(str[j]);
+        //Output original content
+        for (int size = 0; size < str.length; size++) {
+            System.out.print(str[size]);
         }
         System.out.println();
-        for (int i = 0; i < str.length; i++) {
+        for (int run = 0; run < str.length; run++) {
+            //Call method
             transposition(str);
-            for (int j = 0; j < str.length; j++) {
-                System.out.print(str[j]);
+            //Output content
+            for (int size = 0; size < str.length; size++) {
+                System.out.print(str[size]);
             }
             System.out.println();
         }
@@ -18,9 +21,10 @@ public class OneDimensional {
 
     public static void transposition(String[] str) {
         String tStr = str[0];
-        for (int i = 1; i < str.length; i++) {
-            str[i - 1] = str[i];
+        //The first character is placed at the end of the array, and the rest of the array is pushed forward one space
+        for (int position = 1; position < str.length; position++) {
+            str[position - 1] = str[position];
         }
-        str[str.length-1] = tStr;
+        str[str.length - 1] = tStr;
     }
 }
