@@ -7,6 +7,7 @@ public class IntegerSplittingAndSorting {
     public static void main(String[] args) {
         int[] numArray = {12, 15, 35, 151, 16, 654, 153, 135, 115, 531, 123, 54, 16, 68};
         System.out.println("原数组冒泡排序：");
+        bubbling(numArray);
         for (int i = 0; i < numArray.length; i++) {
             System.out.print(numArray[i] + "\t");
         }

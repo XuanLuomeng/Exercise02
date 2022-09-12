@@ -48,6 +48,7 @@ public class Mortal {
             while (true) {
                 getNum = r.nextInt(3);
                 if ((lNum - getNum) >= 0) {
+                    lNum = lNum - getNum;
                     for (int num = 0; num < getNum; num++) {
                         array.add(poker1[lNum1++]);
                     }
@@ -57,6 +58,7 @@ public class Mortal {
             while (true) {
                 getNum = r.nextInt(3);
                 if ((rNum - getNum) >= 0) {
+                    rNum = rNum - getNum;
                     for (int num = 0; num < getNum; num++) {
                         array.add(poker2[rNum1++]);
                     }
