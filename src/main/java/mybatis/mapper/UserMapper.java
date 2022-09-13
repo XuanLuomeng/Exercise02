@@ -11,4 +11,15 @@ public interface UserMapper {
      * 添加用户信息
      */
     int insertUser();
+
+    /**
+     * 修改用户信息
+     * @return
+     */
+    int updateUeser();
+
+    /**
+     * 删除用户信息
+     */
+    void deleteUser();
 }
