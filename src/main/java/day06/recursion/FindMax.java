@@ -12,7 +12,7 @@ public class FindMax {
         int maxNum = 0;
         String[] strArray;
         int[] array = new int[100];
-        BufferedReader br = new BufferedReader(new FileReader("src/main/java/day06/recursion/datafile.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/main/java/day06/datafile.txt"));
         String line;
         while ((line = br.readLine()) != null) {
             strArray = line.split(",");

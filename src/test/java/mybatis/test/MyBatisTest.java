@@ -34,7 +34,7 @@ public class MyBatisTest {
     }
 
     @Test
-    public void testUpdate(){
+    public void testUpdate() {
         SqlSession sqlSession = SqlSessionUtil.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         mapper.updateUeser();
@@ -42,7 +42,7 @@ public class MyBatisTest {
     }
 
     @Test
-    public void testDelete(){
+    public void testDelete() {
         SqlSession sqlSession = SqlSessionUtil.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         mapper.deleteUser();
