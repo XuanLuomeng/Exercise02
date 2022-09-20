@@ -1,6 +1,7 @@
 package mybatis.mapper;
 
 import mybatis.pojo.User;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public interface SelectMapper {
 
     /**
      * 根据id查询用户信息
+     *
      * @param id
      * @return
      */
@@ -22,20 +24,39 @@ public interface SelectMapper {
 
     /**
      * 查询所有的用户信息
+     *
      * @return
      */
     List<User> getAllUser();
 
     /**
      * 返回数据的条目数
+     *
      * @return
      */
     Integer getCount();
 
     /**
      * 根据id查询用户信息为map集合
+     *
      * @param id
      * @return
      */
-    Map<String,Object> getUserByIdToMap(@Param("id") Integer id);
+    Map<String, Object> getUserByIdToMap(@Param("id") Integer id);
+
+    /**
+     * 查询所有的用户信息为map集合
+     *若查询的数据有多条时，并且要将每条数据转换为map集合
+     * 此时有两种解决方法：
+     * 1、将mapper接口方法的返回值设置为泛型时map的list集合
+     * List<Map<String, Object>> getAllUserToMap()
+     * 2、可以将每条数据转换的map集合放到一个大的map中，但是必须要通过@MapKey注解
+     * 将查询的某个字段的值作为大的map的键
+     * @MapKey("id")
+     * Map<String,Object> getAllUserToMap()
+     * @return
+     */
+    //List<Map<String, Object>> getAllUserToMap();
+    @MapKey("id")
+    Map<String,Object> getAllUserToMap();
 }
