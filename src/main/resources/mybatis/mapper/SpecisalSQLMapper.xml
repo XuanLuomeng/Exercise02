@@ -15,6 +15,7 @@
         select * from ${tableName}
     </select>
     <!--
+        insert的属性中有以下:
         userGeneratedKeys:表示当前添加功能使用自增主键
         KeyProperty:将添加的数据的自增主键为实体类类型的参数的属性赋值
     -->
