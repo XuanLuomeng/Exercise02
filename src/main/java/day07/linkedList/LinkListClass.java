@@ -134,4 +134,15 @@ public class LinkListClass<T> {
             getNode(i).next = getNode(i + 1).next;
         }
     }
+
+    public void Insert(int i,T t){
+        if(i<0||i>size()){
+            System.out.println("位置i不在有效范围内");
+        }else {
+            LinkNode<T> s = new LinkNode<>(t);
+            LinkNode<T> p = getNode(i-1);
+            s.next = p.next;
+            p.next = s;
+        }
+    }
 }
