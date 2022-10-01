@@ -15,6 +15,7 @@ public class Md5ShiroTest {
         String salt = UUID.randomUUID().toString();
         //加密
         SimpleHash simpleHash = new SimpleHash("MD5",password,salt,5);
+        System.out.println(salt);
         System.out.println(simpleHash);
     }
 }

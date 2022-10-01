@@ -13,7 +13,7 @@ public class LinkNode<T> {
     }
 
     public LinkNode(T d) {
-        data = d;
-        next = null;
+        this.data = d;
+        this.next = null;
     }
 }
