@@ -1,4 +1,4 @@
-package day08.linkedList;
+package day08.linkedListPojo;
 
 public class LinkListClass<T> {
     LinkNode<T> head;
@@ -46,6 +46,31 @@ public class LinkListClass<T> {
         } else {
             LinkNode<T> elem = getNode(i);
             return elem.data;
+        }
+    }
+
+    public void add(LinkNode node) {
+        LinkNode last = getNode(getSize() - 1);
+        node.next = last.next;
+        last.next = node;
+    }
+
+    public void Insert(T t) {
+        LinkNode<T> s = new LinkNode<>(t);
+        LinkNode<T> p = getNode(getSize() - 1);
+        s.next = p.next;
+        p.next = s;
+    }
+
+    public void delete(int i) {
+        if (i == 0) {
+            head = head.next;
+        } else if (i == getSize() - 1) {
+            getNode(i - 1).next = null;
+        } else if (i < 0 || i >= getSize()) {
+            System.out.println("Number of crossing the line!");
+        } else {
+            getNode(i - 1).next = getNode(i).next;
         }
     }
 }

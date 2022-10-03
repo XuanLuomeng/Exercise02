@@ -1,4 +1,6 @@
-package day08.linkedList;
+package day08.LinkedDemo;
+
+import day08.linkedListPojo.LinkListClass;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
