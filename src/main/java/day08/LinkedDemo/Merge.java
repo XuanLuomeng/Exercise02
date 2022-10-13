@@ -19,7 +19,7 @@ public class Merge {
             }
         }
         System.out.println("print:");
-        for (int size = strs.getSize() - 1; size >= 0; size--) {
+        for (int size = 0; size < strs.getSize(); size++) {
             System.out.print(strs.getElem(size) + "\t");
         }
     }

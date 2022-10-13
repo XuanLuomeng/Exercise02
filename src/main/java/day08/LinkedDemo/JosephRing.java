@@ -4,7 +4,7 @@ import day08.linkedListPojo.LinkListClass;
 
 public class JosephRing {
     public static void main(String[] args) {
-        String[] strs = new String[]{"10", "9", "8", "7", "6", "5", "4", "3", "2", "1"};
+        String[] strs = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
         LinkListClass<String> listClass = new LinkListClass<>(strs);
         int temp = -1;
         int sign = 0;

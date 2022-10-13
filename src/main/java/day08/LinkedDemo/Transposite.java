@@ -25,7 +25,7 @@ public class Transposite {
         }
         LinkListClass<Integer> listClass = new LinkListClass<>(array);
         System.out.println("after:");
-        for (int size = listClass.getSize() - 1; size >= 0; size--) {
+        for (int size = 0; size < listClass.getSize(); size++) {
             System.out.print(listClass.getElem(size) + "\t");
         }
         //Start Swapping
@@ -39,7 +39,7 @@ public class Transposite {
                 LinkNode node1 = listClass.getNode(size);
                 if (node1.getNext() == null) {
                     break;
-                }else if(node1.getNext().getNext()==null){
+                } else if (node1.getNext().getNext() == null) {
                     break;
                 }
                 LinkNode node = listClass.getNode(size - 1);
@@ -52,7 +52,7 @@ public class Transposite {
         //print result
         System.out.println();
         System.out.println("before:");
-        for (int size = listClass.getSize() - 1; size >= 0; size--) {
+        for (int size = 0; size < listClass.getSize(); size++) {
             System.out.print(listClass.getElem(size) + "\t");
         }
     }

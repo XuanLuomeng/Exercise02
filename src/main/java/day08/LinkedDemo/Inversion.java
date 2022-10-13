@@ -6,6 +6,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Inversion the Linked
+ */
 public class Inversion {
     public static void main(String[] args) throws IOException {
         /**

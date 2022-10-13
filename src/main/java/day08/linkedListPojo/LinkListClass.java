@@ -12,7 +12,7 @@ public class LinkListClass<T> {
         head = new LinkNode<T>();
         head.next = null;
         LinkNode<T> node;
-        for (int len = 0; len < list.length; len++) {
+        for (int len = list.length - 1; len >= 0; len--) {
             node = new LinkNode<T>(list[len]);
             node.next = head.next;
             head.next = node;
