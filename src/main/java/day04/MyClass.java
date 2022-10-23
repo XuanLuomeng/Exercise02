@@ -1,4 +1,4 @@
-package day03.day04;
+package day04;
 
 public class MyClass {
     int po;
