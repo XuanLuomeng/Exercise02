@@ -8,13 +8,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -29,45 +29,44 @@ public class ExcelUtil {
      * @return List<T>
      */
     public static <T> List<T> readDataFromExcel(String filePath, Class<T> t, int filterRowNumbers) {
-        FileInputStream file = null;
-        ArrayList<T> arrayList = new ArrayList<>();
+        FileInputStream fis = null;
+        ArrayList<T> list = new ArrayList<>();
         try {
-            file = new FileInputStream(filePath);
-            Workbook sheets = WorkbookFactory.create(file);
-            //根据需求通过getSheetAt获取Excel第i页
+            fis = new FileInputStream(filePath);
+            Workbook sheets = WorkbookFactory.create(fis);
+            //获取sheet第一页（根据自己需要）
             Sheet sheet = sheets.getSheetAt(0);
-            //获取Excel页数
-            int rows = sheet.getPhysicalNumberOfRows();
-            //获取对象字段列表
+            //获取表格的行数
+            int totalRowNumber = sheet.getPhysicalNumberOfRows();
+            //获取对象的字段列表
             Field[] fields = t.getDeclaredFields();
-            for (int i = filterRowNumbers; i < rows; i++) {
+            for (int i = filterRowNumbers; i < totalRowNumber; i++) {
                 //获取一行数据
                 Row row = sheet.getRow(i);
-                //实例化对象放到循环内
-                T obj = t.getDeclaredConstructor().newInstance();
-                //row.getPhysicalNumberOfCells()是获取当行单元格数，遍历一行数据的每个单元格
-                for (int j = 0; j < row.getPhysicalNumberOfCells(); j++) {
+                //实例对象
+                T obj = t.newInstance();
+                //变量一行数据的每个单元格，row.getPhysicalNumberOfCells()是单元格的数量
+                for (int j = 0, jLen = row.getPhysicalNumberOfCells(); j < jLen; j++) {
                     Cell cell = row.getCell(j);
-                    //获取字段名
-                    Field field = fields[j];
-                    System.out.println(field.getName() + ":" + cell);
-                    String substring = field.getName().substring(0, 1);
-                    String methodName = "set" + field.getName().replaceFirst(substring, substring.toUpperCase());
+                    //获取字段
+                    Field dataField = fields[j];
+                    String startWord = dataField.getName().substring(0, 1);
+                    String methodName = "set" + dataField.getName().replaceFirst(startWord, startWord.toUpperCase());
                     //获取字段的set方法，dataField.getType()是参数的类型
-                    Method method = t.getMethod(methodName, field.getType());
+                    Method method = t.getMethod(methodName, dataField.getType());
                     //反射调用set方法，getValueFromCell是把表格的值转成对应的类型
-                    method.invoke(obj, getValueFromCell(field, cell));
+                    method.invoke(obj, getValueFromCell(dataField, cell));
                 }
-                arrayList.add(obj);
+                list.add(obj);
             }
-            return arrayList;
+            return list;
         } catch (Exception e) {
-            log.error("从Excel读取数据异常", e);
+            System.out.println("从Excel读取数据异常");
             return Collections.emptyList();
         } finally {
             try {
-                if (file != null) {
-                    file.close();
+                if (fis != null) {
+                    fis.close();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -204,7 +203,8 @@ public class ExcelUtil {
         if (fieldTypeStr.contains("String")) {
             return cell.getStringCellValue();
         } else if (fieldTypeStr.contains("Integer") || fieldTypeStr.contains("int")) {
-            return Integer.parseInt(cell.getStringCellValue());
+            String str = String.valueOf(cell.getNumericCellValue()).split("\\.")[0];
+            return Integer.parseInt(str);
         } else if (fieldTypeStr.contains("Boolean") || fieldTypeStr.contains("boolean")) {
             return Boolean.getBoolean(cell.getStringCellValue());
         } else if (fieldTypeStr.contains("Double") || fieldTypeStr.contains("double")) {
@@ -216,17 +216,21 @@ public class ExcelUtil {
         } else if (fieldTypeStr.contains("char")) {
             return cell.getStringCellValue().charAt(0);
         } else if (fieldTypeStr.contains("LocalTime")) {
-            return LocalTime.parse(cell.getStringCellValue());
+            //在读取excel日期类型时容易出现格式错误，此处及之后对时间转换之前均先进行数据格式化
+            Date date = DateUtil.getJavaDate(cell.getNumericCellValue());
+            String string = new SimpleDateFormat("yyyy-MM-dd").format(date);
+            return LocalTime.parse(string);
         } else if (fieldTypeStr.contains("LocalDate")) {
-            return LocalDate.parse(cell.getStringCellValue());
+            Date date = DateUtil.getJavaDate(cell.getNumericCellValue());
+            String string = new SimpleDateFormat("yyyy-MM-dd").format(date);
+            return LocalDate.parse(string);
         } else if (fieldTypeStr.contains("LocalDateTime")) {
-            return LocalDateTime.parse(cell.getStringCellValue());
+            Date date = DateUtil.getJavaDate(cell.getNumericCellValue());
+            String string = new SimpleDateFormat("yyyy-MM-dd").format(date);
+            return LocalDateTime.parse(string);
         } else if (fieldTypeStr.contains("Date")) {
-            try {
-                return new SimpleDateFormat("yyyy-MM-dd").parse(cell.getStringCellValue());
-            } catch (ParseException e) {
-                log.error("时间转化异常", e);
-            }
+            Date date = DateUtil.getJavaDate(cell.getNumericCellValue());
+            return date;
         }
         return null;
     }
