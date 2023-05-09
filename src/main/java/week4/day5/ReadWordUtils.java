@@ -5,27 +5,23 @@ import org.apache.poi.ooxml.extractor.POIXMLTextExtractor;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
-public class ReadDocUtils {
-    public static String ReadDoc(String path)throws IOException{
+public class ReadWordUtils {
+    public static String readWord(String path){
         String result = "";
-        try{
-            if(path.endsWith(".doc")){
-                InputStream is = new FileInputStream(path);
-                
-                result = ;
-            }else if (path.endsWith(".docx")){
+        try {
+            if (path.endsWith(".doc")) {
+                result = "此文件格式已不再支持，请转换使用docx文件";
+            } else if (path.endsWith(".docx")) {
                 OPCPackage opcPackage = POIXMLDocument.openPackage(path);
                 POIXMLTextExtractor extractor = new XWPFWordExtractor(opcPackage);
                 result = extractor.getText();
                 extractor.close();
-            }else {
+            } else {
                 System.out.println("此文件不是word文档");
             }
-        }catch (Exception e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return result;
