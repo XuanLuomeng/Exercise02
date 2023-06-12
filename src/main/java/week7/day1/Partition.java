@@ -33,6 +33,7 @@ public class Partition {
         }
     }
 
+    //快排简化版
     private static int partition(int l, int r, int x) {
         int s = 0;
         for (int i = l; i < r; i++) {
@@ -56,14 +57,13 @@ public class Partition {
         return j;
     }
 
+    //将最小值放到最后(冒泡简化版)
     private static void bubble(int l, int r) {
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i; j < nums.length; j++) {
-                if (nums[i] > nums[j]) {
-                    int temp = nums[i];
-                    nums[i] = nums[j];
-                    nums[j] = temp;
-                }
+        for (int j = l; j < r; j++) {
+            if (nums[j] > nums[r]) {
+                int temp = nums[r];
+                nums[r] = nums[j];
+                nums[j] = temp;
             }
         }
     }
