@@ -1,24 +1,19 @@
-package week7.day2;
+package week7.day3;
 
 /**
  * @author LuoXuanwei
- * @date 2023/6/13 0:01
+ * @date 2023/6/13 11:08
  */
 public class OptimalBinarySearchTree {
-    public static float[] a = {2, 3, 1, 1, 1};
-
-    public static float[] b = {3, 3, 1, 1};
-
-    public static int n = 4;
-
-    public static int[][] s = new int[a.length + 1][b.length + 1];      //根节点
-
-    public static float[][] m = new float[a.length + 1][b.length + 1];  //搜索代价
-
-    public static float[][] w = new float[a.length + 1][b.length + 1];  //搜索概率
+    private static int[] a = {2, 3, 1, 1, 1};
+    private static int[] b = {3, 3, 1, 1};
+    private static int n = 4;
+    private static int[][] s = new int[a.length + 1][b.length + 1];
+    private static float[][] m = new float[a.length + 1][b.length + 1];
+    private static float[][] w = new float[a.length + 1][b.length + 1];
 
     public static void main(String[] args) {
-        optimalBinarySearchTree(m, w, s, a, b);
+        optimalBinarySearchTree();
         System.out.println("s:");
         show(s);
         System.out.println("m:");
@@ -27,16 +22,16 @@ public class OptimalBinarySearchTree {
         show(w);
     }
 
-    public static void optimalBinarySearchTree(float[][] m, float[][] w, int[][] s, float[] a, float[] b) {
+    private static void optimalBinarySearchTree() {
         for (int i = 0; i <= n; i++) {
             w[i + 1][i] = a[i];
             m[i + 1][i] = 0;
         }
         for (int r = 0; r < n; r++) {
             for (int i = 1; i <= n - r; i++) {
-                int j = i + r;
-                w[i][j] = w[i][j - 1] + a[j] + b[j - 1];        //w=该行前一个w+a+b前一个
-                m[i][j] = m[i][i - 1] + m[i + 1][j];            //m=该行有效数据前一个+m正下行的数据
+                int j = r + i;
+                w[i][j] = w[i][j - 1] + a[j] + b[j - 1];
+                m[i][j] = m[i][i - 1] + m[i + 1][j];
                 s[i][j] = i;
                 for (int k = i + 1; k <= j; k++) {
                     float t = m[i][k - 1] + m[k + 1][j];
@@ -69,5 +64,4 @@ public class OptimalBinarySearchTree {
         }
         System.out.println();
     }
-
 }
