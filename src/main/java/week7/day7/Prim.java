@@ -35,7 +35,7 @@ public class Prim {
         for (int i = 1; i < n; i++) {
             lowcost[i] = c[0][i];
             closest[i] = 0;
-            s[i] = false;
+            s[0] = false;
         }
         for (int i = 0; i < n - 1; i++) {
             int min = Integer.MAX_VALUE;
