@@ -30,21 +30,6 @@ public class FIFOBBLoading {
         }
     }
 
-    private static void enQueue(int wt, int i, QNode parent, boolean leftChild) {
-        if (i == n) {
-            //可行叶子节点
-            if (wt == bestw) {
-                //当前最优装载重量
-                bestE = parent;
-                bestx[n] = (leftChild) ? 1 : 0;
-            }
-            return;
-        }
-        //非叶子节点，将节点加入到活结点队列
-        QNode b = new QNode(parent, leftChild, wt);
-        queue.add(b);
-    }
-
     static int n;
     /**
      * 当前最优装载重量
@@ -53,20 +38,19 @@ public class FIFOBBLoading {
     /**
      * 活结点队列
      */
-    static Queue<QNode> queue;
+    static Queue<QNode> queue = new LinkedList();
     static QNode bestE;
     static int[] bestx;
+    static int c;
+    static int[] w;
 
-    public static int maxLoading(int[] w, int c, int[] xx) {
+    public static void maxLoading() {
         //该算法实施对解空间树的队列式分支限界搜索，返回最优装载重量
         bestw = 0;
         //创建根结点A
         QNode A = new QNode(null, true, 0);
-        //队列用来存放活结点表
-        queue = new LinkedList();
         QNode e = A;
         bestE = A;
-        bestx = xx;
         int i = 1;
         int ew = 0;
         int r = 0;
@@ -92,7 +76,7 @@ public class FIFOBBLoading {
                 enQueue(ew, i, e, false);
             }
             //取下一扩展结点
-            e = (QNode) queue.remove();
+            e = queue.poll();
             if (e == null) {
                 //同层结点尾部
                 if (queue.isEmpty()) {
@@ -101,7 +85,7 @@ public class FIFOBBLoading {
                 //同层结点尾部标志
                 queue.add(null);
                 //下一扩展结点
-                e = (QNode) queue.remove();
+                e = queue.remove();
                 //进入下一层
                 i++;
                 //剩余集装箱重量
@@ -114,10 +98,34 @@ public class FIFOBBLoading {
             bestx[j] = (bestE.leftChild) ? 1 : 0;
             bestE = bestE.parent;
         }
-        return bestw;
+    }
+
+    private static void enQueue(int wt, int i, QNode parent, boolean leftChild) {
+        if (i == n) {
+            //可行叶子节点
+            if (wt == bestw) {
+                //当前最优装载重量
+                bestE = parent;
+                bestx[n] = (bestE.leftChild) ? 1 : 0;
+            }
+            return;
+        }
+        //非叶子节点，将节点加入到活结点队列
+        QNode b = new QNode(parent, leftChild, wt);
+        queue.add(b);
     }
 
     public static void main(String[] args) {
+        w = new int[]{0, 60, 40, 10, 30, 50};
+        n = 5;
+        bestx = new int[n + 1];
+        c = 120;
 
+        maxLoading();
+        System.out.println("最优装载重量:" + bestw);
+        for (int i = 1; i <= n; i++) {
+            System.out.print(bestx[i] + "\t");
+        }
+        System.out.println();
     }
 }
