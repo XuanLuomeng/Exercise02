@@ -60,9 +60,9 @@ public class Partition {
     //将最小值放到最后(冒泡简化版)
     private static void bubble(int l, int r) {
         for (int j = l; j < r; j++) {
-            if (nums[j] > nums[r]) {
-                int temp = nums[r];
-                nums[r] = nums[j];
+            if (nums[j] > nums[r - 1]) {
+                int temp = nums[r - 1];
+                nums[r - 1] = nums[j];
                 nums[j] = temp;
             }
         }
