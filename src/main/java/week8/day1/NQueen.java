@@ -67,13 +67,11 @@ public class NQueen {
     public static void backTrack(int t) {
         if (t > n) {
             // 已经找到一种可行解
-            long temp = sum + 1;
-            System.out.print("第" + temp + "种可行解为： ");
+            System.out.print("第" + (++sum) + "种可行解为： ");
             for (int k = 1; k <= n; k++) {
                 System.out.print(x[k] + " ");
             }
             System.out.println();
-            sum++;
         } else {
             for (int i = 1; i <= n; i++) {
                 x[t] = i;

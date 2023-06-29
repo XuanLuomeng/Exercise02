@@ -1,8 +1,8 @@
-package week7.day2;
+package week8.day7;
 
 /**
  * @author LuoXuanwei
- * @date 2023/6/13 0:01
+ * @date 2023/6/28 17:00
  */
 public class OptimalBinarySearchTree {
     public static float[] a = {2, 3, 1, 1, 1};
@@ -11,11 +11,11 @@ public class OptimalBinarySearchTree {
 
     public static int n = 4;
 
-    public static int[][] s = new int[a.length + 1][b.length + 1];      //根节点
+    public static int[][] s = new int[a.length + 1][b.length + 1];
 
-    public static float[][] m = new float[a.length + 1][b.length + 1];  //搜索代价
+    public static float[][] w = new float[a.length + 1][b.length + 1];
 
-    public static float[][] w = new float[a.length + 1][b.length + 1];  //搜索概率
+    public static float[][] m = new float[a.length + 1][b.length + 1];
 
     public static void main(String[] args) {
         optimalBinarySearchTree();
@@ -27,7 +27,7 @@ public class OptimalBinarySearchTree {
         show(w);
     }
 
-    public static void optimalBinarySearchTree() {
+    private static void optimalBinarySearchTree() {
         for (int i = 0; i <= n; i++) {
             w[i + 1][i] = a[i];
             m[i + 1][i] = 0;
@@ -35,10 +35,10 @@ public class OptimalBinarySearchTree {
         for (int r = 0; r < n; r++) {
             for (int i = 1; i <= n - r; i++) {
                 int j = i + r;
-                w[i][j] = w[i][j - 1] + a[j] + b[j - 1];        //w=该行前一个w+a+b前一个
-                m[i][j] = m[i][i - 1] + m[i + 1][j];            //m=该行有效数据前一个+m正下行的数据
+                w[i][j] = w[i][j - 1] + a[j] + b[j - 1];
+                m[i][j] = m[i][i - 1] + m[i + 1][j];
                 s[i][j] = i;
-                for (int k = i + 1; k <= j; k++) {
+                for (int k = i; k <= j; k++) {
                     float t = m[i][k - 1] + m[k + 1][j];
                     if (t < m[i][j]) {
                         m[i][j] = t;
@@ -69,5 +69,4 @@ public class OptimalBinarySearchTree {
         }
         System.out.println();
     }
-
 }

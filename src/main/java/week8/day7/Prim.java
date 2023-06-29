@@ -1,18 +1,17 @@
-package week7.day7;
+package week8.day7;
 
 /**
  * @author LuoXuanwei
- * @date 2023/6/18 0:09
+ * @date 2023/6/28 17:33
  */
 public class Prim {
     static int n = 6;                       //点的数量
-    static int[] lowcost = new int[n];      //与每个点的最短距离
-    static int[] closest = new int[n];      //每个点与哪个点相连
+    static int[] lowCost = new int[n];      //与每个点的最短距离
+    static int[] cloSest = new int[n];      //每个点与哪个点相连
     static boolean[] s = new boolean[n];    //每个点是否已选
     static int[][] c = new int[n][n];       //该点与最短距离的点之间的距离
 
     public static void main(String[] args) {
-        //默认没有连通的点均为无限长
         for (int i = 0; i < c.length; i++) {
             for (int j = 0; j < c[i].length; j++) {
                 c[i][j] = Integer.MAX_VALUE;
@@ -33,25 +32,25 @@ public class Prim {
     private static void prim() {
         s[0] = true;
         for (int i = 1; i < n; i++) {
-            lowcost[i] = c[0][i];
-            closest[i] = 0;
-            s[0] = false;
+            lowCost[i] = c[0][i];
+            cloSest[i] = 0;
+            s[i] = false;
         }
         for (int i = 0; i < n - 1; i++) {
             int min = Integer.MAX_VALUE;
             int j = 0;
             for (int k = 1; k < n; k++) {
-                if (lowcost[k] < min && !s[k]) {
-                    min = lowcost[k];
+                if (lowCost[k] < min && !s[k]) {
+                    min = lowCost[k];
                     j = k;
                 }
             }
-            System.out.println(j + "\t" + closest[j] + "\t" + "距离为：" + lowcost[j]);
+            System.out.println(j + "\t" + cloSest[j] + "\t距离为:" + lowCost[j]);
             s[j] = true;
             for (int k = 1; k < n; k++) {
-                if (c[j][k] < lowcost[k] && !s[k]) {
-                    lowcost[k] = c[j][k];
-                    closest[k] = j;
+                if (c[j][k] < lowCost[k] && !s[k]) {
+                    lowCost[k] = c[j][k];
+                    cloSest[k] = j;
                 }
             }
         }

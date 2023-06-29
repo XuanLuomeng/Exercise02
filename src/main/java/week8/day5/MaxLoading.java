@@ -3,6 +3,8 @@ package week8.day5;
 import java.util.PriorityQueue;
 
 /**
+ * 优先级队列式分支界限法求装载问题
+ *
  * @author LuoXuanwei
  * @date 2023/6/19 14:18
  */
