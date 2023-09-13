@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<config>
+<!--    <chartType>HistogramChart</chartType>-->
+<!--    <chartType>LineChart</chartType>-->
+    <chartType>PieChart</chartType>
+</config>
