@@ -2,5 +2,9 @@
 <config>
 <!--    <chartType>HistogramChart</chartType>-->
 <!--    <chartType>LineChart</chartType>-->
-    <chartType>PieChart</chartType>
+<!--    <chartType>PieChart</chartType>-->
+<!--    <ticketType>StudentDiscount</ticketType>-->
+<!--    <ticketType>ChildrenDiscount</ticketType>-->
+<!--    <ticketType>VIPDiscount</ticketType>-->
+    <className>week9.day3.factory.FileLoggerFactory</className>
 </config>
