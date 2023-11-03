@@ -6,5 +6,8 @@
 <!--    <ticketType>StudentDiscount</ticketType>-->
 <!--    <ticketType>ChildrenDiscount</ticketType>-->
 <!--    <ticketType>VIPDiscount</ticketType>-->
-    <className>week9.day3.factory.FileLoggerFactory</className>
+<!--    <className>week9.day3.factory.FileLoggerFactory</className>-->
+<!--    <className>week9.day5.NewProxySearcher</className>-->
+    <className>week9.day7.test1.JPGImage</className>
+    <className>week9.day7.test1.WindowsImp</className>
 </config>
