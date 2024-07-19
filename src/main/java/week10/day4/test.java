@@ -7,7 +7,7 @@ package week10.day4;
  * @date 2024/3/23 23:20
  */
 public class test {
-    private static final int today = 13;
+    private static final int today = 43;
 
     public static void main(String[] args) {
         System.out.println("学习:" + today);
