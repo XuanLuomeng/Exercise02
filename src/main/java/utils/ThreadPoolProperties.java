@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "thread.pool")
+//@ConfigurationProperties(prefix = "thread.pool")
 public class ThreadPoolProperties {
     /**
      * 核心线程池大小

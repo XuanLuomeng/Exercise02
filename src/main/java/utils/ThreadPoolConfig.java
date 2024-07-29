@@ -12,6 +12,9 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @version 1.0
  * @description TODO
  * @date 2024/7/21 12:20
+ *
+ * jdk:17+
+ *
  * application properties配置:
  *  thread.pool.corePoolSize = 16
  *  thread.pool.maxPoolSize = 32
@@ -24,7 +27,7 @@ public class ThreadPoolConfig {
     @Resource
     private ThreadPoolProperties threadPoolProperties;
 
-    @Bean
+    /*@Bean
     public ThreadPoolTaskExecutor threadPoolTaskExecutor(){
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
 
@@ -44,6 +47,5 @@ public class ThreadPoolConfig {
         threadPoolProperties.initialize();
 
         return threadPoolTaskExecutor;
-    }
-
+    }*/
 }
