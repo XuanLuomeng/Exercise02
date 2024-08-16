@@ -1,7 +1,6 @@
-package week13;
+package week13.day1;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
