@@ -1,5 +1,7 @@
 package week13.day7;
 
+import java.util.Random;
+
 /**
  * @author LuoXuanwei
  * @version 1.0
