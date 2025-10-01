@@ -1,4 +1,4 @@
-package week16;
+package week16.day4;
 
 import java.util.Stack;
 
